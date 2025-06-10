@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+.containe{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.nav-link:hover{
+  border-top: 4px solid black;
+}
+.nav-link{
+  margin-top: 0.075rem;
+}
+.navbar{
+  margin-bottom: 20px;
+}
+
+
+.carousel-boullt{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+
+}
+.carousel-boullt span{
+  width: 45px;
+  height: 12px;
+  background-color: rgb(180, 185, 185);
+  margin-left: 10px;
+  border-radius: 10px ;
+  cursor: pointer;
+  box-shadow: 3px 2px 2px rgba(73, 72, 72, 0.338);
+}
+
+
+
+.active{
+  color: black;
+}
+.title{
+  font-family: 'abril fatface';
+  font-size: 3rem;
+  
+}
+.first{
+ padding: 5rem;
+}
+.text_dresser{
+  color: rgb(255, 36, 36);
+}
+.paragh_dresser{
+  color: rgb(29, 29, 28);
+}
+.testcase{
+  position: relative;
+  z-index: 1;
+}
+
+.testcase::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  opacity: .6; 
+  z-index: -1;
+  background: url('components/home/hairdresser.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+.testcase1{
+  position: relative;
+  z-index: 1;
+}
+
+.testcase1::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  opacity: .5; 
+  z-index: -1;
+  background: url('components/Img/girl.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+.testcase4{
+  position: relative;
+  z-index: 1;
+}
+
+.testcase4::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  opacity: .4; 
+  z-index: -1;
+  background: url('components/home/hairdress.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+.testcase3{
+  position: relative;
+  z-index: 1;
+}
+
+.testcase3::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  opacity: .6; 
+  z-index: -1;
+  background: url('components/home/dyeing.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+.testcase2{
+  position: relative;
+  z-index: 1;
+}
+
+.testcase2::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  opacity: .8; 
+  z-index: -1;
+  background: url('components/home/beautiful.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+.button_home{
+  background-color: rgb(147, 14, 14);
+}
+.text-dying{
+  color: rgb(255, 55, 88);
+}
+.text-dry{
+  color: rgb(3, 85, 85);
+}
+.home{
+  margin-top: 1rem;
+}
+.icon{
+  width: 50px;
+  vertical-align: text-top;
+}
+
+@media (max-width:1024px){
+  .containe{
+    padding: 2rem;
+  }
+  .title{
+    font-size: 3.5rem;
+  }
+  .home_body{
+    font-size: 2.75rem;
+  }
+}
