@@ -88,7 +88,7 @@ const RadioMasters = ({ classes, setEmployee_id, setEmployee }) => {
     });
 
   useEffect(() => {
-    httpClient.get("/employee").then(res => {
+    httpClient.get("/api/v1/employees").then(res => {
       setUsers(res.data);
     });
   }, []);
