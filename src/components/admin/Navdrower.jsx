@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Bookings from './Bookings';
 import Users from './Users';
 import Employee from './Employee';
@@ -43,7 +44,7 @@ const Navdrower = () => {
       <div  >
         <nav class="navbar navbar-expand-md navbar-light bg-warning">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Salon Gerente</a>
+    <Link to="/home" class="navbar-brand" style={{ fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'none', color: '#000' }}>Salon Gerente</Link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

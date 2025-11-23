@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { withStyles, FormControlLabel, Grid, Switch } from "@material-ui/core";
-import axios from "axios";
+import httpClient from "../../httpClient";
 
 const style = theme => ({
   root: {
@@ -40,7 +40,7 @@ const SelectService = ({ classes, setService_id, setService }) => {
     .join(", ");
 
   useEffect(() => {
-    axios.get("https://appointment-0nu1.onrender.com/api/v1/stylings")
+    httpClient.get("/api/v1/stylings")
     .then((response) => {
       setServices(response.data)
     })

@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React, {useState, useEffect} from 'react'
+import httpClient from '../../httpClient'
 import { Table } from 'react-bootstrap'
 
 
@@ -10,11 +10,11 @@ const Employee = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-      axios.get("https://appointment-0nu1.onrender.com/api/v1/employees")
-      .then((response) =>{
+      httpClient.get("/api/v1/employees")
+      .then((response) => {
           setServices(response.data)
           setIsLoading(false)
-      } )
+      })
   }, [] )
   if (isLoading){
       return <h2>Loading....</h2>

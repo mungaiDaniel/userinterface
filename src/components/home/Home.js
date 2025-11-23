@@ -42,9 +42,12 @@ const Home = () => {
             <p className='home_body' style={{fontSize: '1rem',
          color: 'white'
       }}>Our mission is to provide our clients with results based on our clients needs and the advice of our professional hair stylist. Thank you to all of our clients who continue to support us and in making us one of the leading Hair Salons Kenya</p>
-             <button type="button" className="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
+             <div className="arrow-container" style={{position: 'relative', display: 'inline-block'}}>
+               <span className="blinking-arrow" style={{right: '-50px', top: '50%', transform: 'translateY(-50%)'}}>→</span>
+               <button type="button" className="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
    Book Your Appointment Now
  </button>
+             </div>
 
         </div>
 
@@ -58,9 +61,12 @@ const Home = () => {
             <p className='home_body' style={{fontSize: '1rem',
          color: 'black'
       }}>At Salon Gerente Hair & Beauty is to provide a friendly, personalized service through a team of highly skilled and creative professionals. Teamwork is our most valuable asset which ensures our clients are always number one, and we strive to exceed your expectations</p>
-             <button type="button" className="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
+             <div className="arrow-container" style={{position: 'relative', display: 'inline-block'}}>
+               <span className="blinking-arrow" style={{right: '-50px', top: '50%', transform: 'translateY(-50%)'}}>→</span>
+               <button type="button" className="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
    Book Your Appointment Now
  </button>
+             </div>
 
         </div>
 
@@ -74,9 +80,12 @@ const Home = () => {
             <p className='home_body' style={{fontSize: '1rem',
          color: 'black'
       }}>Whether you want to get a simple, classic hair cut or you want to get a personalized look from the stylists, SALON GERENTE is for you. They offer a range of services starting from hair styling, hair coloring, makeup, eyelash extensions to skincare, bronzing, hair removal and barbering.</p>
-             <button type="button" className="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
+             <div className="arrow-container" style={{position: 'relative', display: 'inline-block'}}>
+               <span className="blinking-arrow" style={{right: '-50px', top: '50%', transform: 'translateY(-50%)'}}>→</span>
+               <button type="button" className="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
    Book Your Appointment Now
  </button>
+             </div>
 
         </div>
 
@@ -88,10 +97,13 @@ const Home = () => {
           <div className="container  first" >
           <h3 className='title text-warning' >SALON GERENTE <span class="text-info"> WE CARE ABOUT YOUR HAIR </span></h3>
             <p className='home_body' style={{fontSize: '1rem'
-      }}>We strive to reach beyond the roots (of hair), and into the refinement and healing of one’s core self. </p>
-             <button type="button" className="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
+      }}>We strive to reach beyond the roots (of hair), and into the refinement and healing of one's core self. </p>
+             <div className="arrow-container" style={{position: 'relative', display: 'inline-block'}}>
+               <span className="blinking-arrow" style={{right: '-50px', top: '50%', transform: 'translateY(-50%)'}}>→</span>
+               <button type="button" className="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
    Book Your Appointment Now
  </button>
+             </div>
 
         </div>
 
@@ -107,9 +119,12 @@ const Home = () => {
       }}>We believe people go to salons to look a certain way. People go to SALON GERENTE to feel a certain way.</p>
 
 
-             <button type="button" class="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
+             <div className="arrow-container" style={{position: 'relative', display: 'inline-block'}}>
+               <span className="blinking-arrow" style={{right: '-50px', top: '50%', transform: 'translateY(-50%)'}}>→</span>
+               <button type="button" class="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" onClick={book} title="Book appointment">
    Book Your Appointment Now
  </button>
+             </div>
 
         </div>
 

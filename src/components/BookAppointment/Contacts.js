@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { withStyles, TextField, Grid } from "@material-ui/core";
-import axios from "axios";
+import httpClient from "../../httpClient";
 const style = theme => {
   return {
     root: {
@@ -19,7 +19,7 @@ const Contacts = ({ classes, employee_id, service_id, date, employee, service}) 
   // const [bookings, setBookings] = useState([])
 
   // useEffect(() =>{
-  //   axios.get("http://127.0.0.1:5000/booking")
+  //   httpClient.get("/booking")
   //   .then((res) => {
   //     setBookings(res.data)
   //   })

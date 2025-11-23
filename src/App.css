@@ -13,9 +13,20 @@
 }
 .nav-link{
   margin-top: 0.075rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
 }
 .navbar{
   margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.navbar-brand {
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  transition: opacity 0.3s ease;
+}
+.navbar-brand:hover {
+  opacity: 0.8;
 }
 
 
@@ -177,4 +188,39 @@
   .home_body{
     font-size: 2.75rem;
   }
+}
+
+/* Blinking arrow animation */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+.blinking-arrow {
+  animation: blink 1.5s ease-in-out infinite, pulse 1.5s ease-in-out infinite;
+  position: absolute;
+  font-size: 2.5rem;
+  color: #28a745;
+  font-weight: bold;
+  z-index: 10;
+  pointer-events: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.arrow-container {
+  position: relative;
+  display: inline-block;
 }

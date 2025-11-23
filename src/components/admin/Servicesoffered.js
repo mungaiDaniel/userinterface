@@ -60,7 +60,7 @@ const Servicesoffered = () => {
 
     try {
     const resp = await httpClient.post(
-      "https://appointment-0nu1.onrender.com/api/v1/stylings",
+      "http://127.0.0.1:5000/api/v1/stylings",
       {
         style,
         cost,

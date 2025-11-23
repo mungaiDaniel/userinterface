@@ -8,8 +8,8 @@ import {
 } from "@material-ui/core";
 import classNames from "classnames";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import httpClient from "../../httpClient";
 
 
 const style = theme => {
@@ -74,13 +74,13 @@ const NewBookings = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("https://appointment-0nu1.onrender.com/api/v1/booking", {
+    httpClient.get("/bookings", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
     })
-      .then((res) => {
-        setBookings(res.data);
+      .then((response) => {
+        setBookings(response.data);
         setLoading(false);
       })
       .catch(() => setLoading(false));

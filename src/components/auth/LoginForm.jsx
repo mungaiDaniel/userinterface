@@ -43,7 +43,7 @@ const LoginForm = () => {
     console.log(email, password);
 
      await axios
-    .post("https://appointment-0nu1.onrender.com/api/v1/login", {
+    .post("http://127.0.0.1:5000/api/v1/login", {
       email,
       password,
     })
@@ -54,7 +54,7 @@ const LoginForm = () => {
      setTimeout(() => {
       setSuccess('')
      }, 4000)
-     navigate('/')
+     navigate('/home')
         })
     .catch((err) => {
 

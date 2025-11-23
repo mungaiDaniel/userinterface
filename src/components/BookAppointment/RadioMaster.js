@@ -8,7 +8,7 @@ import {
   Tooltip
 } from "@material-ui/core";
 import classNames from "classnames";
-import axios from "axios";
+import httpClient from "../../httpClient";
 import { Face } from "@material-ui/icons";
 import { AccountBalance } from "@material-ui/icons";
 
@@ -88,10 +88,9 @@ const RadioMasters = ({ classes, setEmployee_id, setEmployee }) => {
     });
 
   useEffect(() => {
-    axios.get("https://appointment-0nu1.onrender.com/api/v1/employees")
-      .then((response) => {
-        setUsers(response.data);
-      });
+    httpClient.get("/employee").then(res => {
+      setUsers(res.data);
+    });
   }, []);
 
   return (

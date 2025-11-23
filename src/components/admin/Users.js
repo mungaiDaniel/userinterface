@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React, {useState, useEffect} from 'react'
+import httpClient from '../../httpClient';
 import { Table } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form';
 import { Alert, AlertTitle } from '@mui/material';
@@ -12,11 +12,11 @@ const Users = () => {
     const [success, setSuccess] = useState('')
 
     useEffect(() => {
-        axios.get("https://appointment-0nu1.onrender.com/api/v1/users")
-        .then((response) =>{
+        httpClient.get("/api/v1/users")
+        .then((response) => {
             setServices(response.data)
             setIsLoading(false)
-        } )
+        })
     }, [] )
 
     if (isLoading){
@@ -25,7 +25,7 @@ const Users = () => {
 
    const MakesuperAdmin = (e, userId) => {
   const newRole = e.target.value;
-  axios.put(`https://appointment-0nu1.onrender.com/api/v1/super_admin/${userId}`, 
+  httpClient.put(`/api/v1/super_admin/${userId}`, 
     { role: newRole },
     {
       headers: {

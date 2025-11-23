@@ -11,16 +11,16 @@ const AllServices = () => {
     const [services, setServices] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
+  useEffect(() => {
     // Fetch services from your API
-    httpClient.get("https://appointment-0nu1.onrender.com/api/v1/stylings")
+    httpClient.get("/api/v1/stylings")
       .then(res => setServices(res.data))
       .catch(err => console.error(err));
   }, []);
 
   const handleDelete = async (id) => {
     try {
-      await httpClient.delete(`https://appointment-0nu1.onrender.com/api/v1/stylings/${id}`, {
+      await httpClient.delete(`/api/v1/stylings/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },

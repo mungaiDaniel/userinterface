@@ -1,46 +1,22 @@
-import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, ThemeProvider, createTheme } from '@material-ui/core/styles';
-import { orange } from '@mui/material/colors';
+import { makeStyles } from '@material-ui/core/styles';
 import { Link, useNavigate } from "react-router-dom";
 import React from 'react';
-import Badge from "@material-ui/core/Badge";
 import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import { useEffect } from 'react' 
+import MenuItem from "@material-ui/core/MenuItem"; 
 const useStyles = makeStyles((theme) => ({
- 
     title: {
       flexGrow: 1,
-    },
-    AppBar: {
-      // backgroundColor: "#fff",
-    },
-    badge: {
-      border: `2px solid ${theme.palette.background.paper}`,
     },
     links: {
       textDecoration: "none",
     },
   }));
-
-const theme = createTheme({
-    typography:{
-      h3:{
-        fontSize: 56,
-      }
-    },
-    palette:{
-      primary:{
-        main: orange[500],
-      }
-    }
-  })
 
 const NavBar = ({ }) => {
     const classes = useStyles();
@@ -49,7 +25,8 @@ const NavBar = ({ }) => {
     const logout = () =>{
       window.localStorage.removeItem('access_token')
       window.localStorage.removeItem('user_role')
-      navigate('/login')
+      handleClose()
+      navigate('/')
     }
 
 
@@ -66,18 +43,18 @@ const NavBar = ({ }) => {
   
   return (
     <div className={classes.root}>
-    <AppBar className='navbar navbar-expand-lg bg-warning navbar-dark py-0 mb-1'>
+    <AppBar className='navbar navbar-expand-lg bg-warning navbar-dark py-0 mb-1' position="static">
         <Container>
-        <Typography>
-        <Link to="/" className='navbar-brand text-dark'>Salon Gerente</Link>
+    <Toolbar style={{ width: '100%', display: 'flex', justifyContent: 'space-between', padding: '0' }}>
+        <Typography className={classes.title}>
+        <Link to="/home" className='navbar-brand text-dark' style={{ fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'none' }}>Salon Gerente</Link>
         </Typography>
-    <Toolbar>
       <IconButton 
         edge='start'
         aria-label='menu'
         data-bs-toggle="collapse"
         data-bs-target="#navmenu"
-        className='navbar-toggler'
+        className='navbar-toggler d-lg-none'
         style={{
           color: 'black'
         }}
@@ -85,27 +62,25 @@ const NavBar = ({ }) => {
         <MenuIcon/>
       </IconButton>
         
-        <Typography >
-        <div className="collapse navbar-collapse mx-5" id="navmenu">
-          <ul className="navbar-nav  ms-auto">
+        <div className="collapse navbar-collapse" id="navmenu">
+          <ul className="navbar-nav ms-auto" style={{ display: 'flex', alignItems: 'center', gap: '1rem', listStyle: 'none', margin: 0, padding: 0 }}>
             <li className="nav-item">
-              <a href="#about" className="nav-link text-dark">About</a>
+              <Link to="/about" className="nav-link text-dark" style={{ textDecoration: 'none', cursor: 'pointer' }}>About</Link>
             </li>
             <li className="nav-item">
-              <a href="#services" className="nav-link text-dark">Services</a>
+              <Link to="/services-page" className="nav-link text-dark" style={{ textDecoration: 'none', cursor: 'pointer' }}>Services</Link>
             </li>
             <li className="nav-item">
-              <a href="#stylist" className="nav-link text-dark">Stylist</a>
+              <Link to="/stylist" className="nav-link text-dark" style={{ textDecoration: 'none', cursor: 'pointer' }}>Stylist</Link>
             </li>
             <li className="nav-item">
-              <a href="#location" className="nav-link text-dark">Location</a>
+              <Link to="/location" className="nav-link text-dark" style={{ textDecoration: 'none', cursor: 'pointer' }}>Location</Link>
             </li>
             <li className="nav-item">
-            <a href="#" onClick={handleClick} className="nav-link text-dark">View More</a>
+            <a href="#" onClick={handleClick} className="nav-link text-dark" style={{ textDecoration: 'none', cursor: 'pointer' }}>View More</a>
             </li>
           </ul>
         </div>
-        </Typography>
 
 
         <Menu
@@ -121,7 +96,7 @@ const NavBar = ({ }) => {
               window.localStorage.getItem('access_token') ? 
               (<MenuItem onClick={logout}>Logout</MenuItem>) 
               :
-              (<Link to="/login" className={classes.links}>
+              (<Link to="/" className={classes.links}>
               <MenuItem onClick={handleClose}>Login</MenuItem>
             </Link>)
             }
