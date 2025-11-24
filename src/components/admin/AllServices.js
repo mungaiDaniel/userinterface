@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { Table } from 'react-bootstrap'
 import { Button } from '@mui/material';
-import httpClient from '../../httpClient';
+import axios from 'axios';
 
 
 
@@ -12,23 +12,37 @@ const AllServices = () => {
     const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Fetch services from your API
-    httpClient.get("/api/v1/stylings")
-      .then(res => setServices(res.data))
-      .catch(err => console.error(err));
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get("https://trina-overmild-cristobal.ngrok-free.dev/api/v1/stylings");
+        setServices(response.data);
+      } catch (err) {
+        console.error("Error fetching services:", err);
+        alert('Failed to load services. Please try again.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchServices();
   }, []);
 
   const handleDelete = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this service?')) return;
+    
     try {
-      await httpClient.delete(`/api/v1/stylings/${id}`, {
+      await axios.delete(`https://trina-overmild-cristobal.ngrok-free.dev/api/v1/stylings/${id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("access_token")}`
+        }
       });
+      
       setServices(services.filter(service => service.id !== id));
-      alert('Service deleted!');
+      alert('Service deleted successfully!');
     } catch (err) {
-      alert('Delete failed!');
+      console.error('Delete error:', err);
+      alert(err.response?.data?.message || 'Failed to delete service. Please try again.');
     }
   };
 

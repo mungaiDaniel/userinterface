@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import httpClient from '../../httpClient'
 import { Table } from 'react-bootstrap'
 
 
@@ -10,12 +9,23 @@ const Employee = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-      httpClient.get("/api/v1/employees")
-      .then((response) => {
-          setServices(response.data)
-          setIsLoading(false)
-      })
-  }, [] )
+    fetch("http://localhost:3000/api/v1/employees", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    })
+    .then(response => response.json())
+    .then(data => {
+      setServices(data);
+      setIsLoading(false);
+    })
+    .catch(error => {
+      console.error('Error fetching employees:', error);
+      setIsLoading(false);
+    });
+  }, [])
   if (isLoading){
       return <h2>Loading....</h2>
   }

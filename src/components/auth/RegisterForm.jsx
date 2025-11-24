@@ -1,5 +1,5 @@
 import { useState } from "react";
-import httpClient from "../../httpClient";
+import axios from "axios";
 import {
   Stack,
   Box,
@@ -44,20 +44,29 @@ const RegisterForm = () => {
   const RegisterUser = async  () => {
     console.log(lastName, firstName, email, password, location, phoneNumber);
 
-    const resp = await httpClient.post("http://127.0.0.1:5000/api/v1/users", {
+    await axios
+      .post("https://trina-overmild-cristobal.ngrok-free.dev/api/v1/users", {
       firstName,
       lastName,
       email,
       password,
       location,
       phoneNumber,
-    }).then((response) => {
+    })
+      .then((response) => {
       setSuccess('Sussessful registered now you can login')
       setTimeout(() =>{
         setSuccess('')
       }, 4000)
 
       navigate('/login')
+      })
+      .catch((error) => {
+        console.error('Registration error:', error);
+        setError(error.response?.data?.message || 'Registration failed. Please try again.');
+        setTimeout(() => {
+          setError('');
+        }, 4000);
     }).catch((err) =>{
       console.log(err)
       setError('Input error check again')

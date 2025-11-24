@@ -12,7 +12,7 @@ import RadioMaster from "./RadioMaster";
 import SelectServices from "./SelectServices";
 import SelectDateDaypart from "./SelectDateDaypart";
 import Contacts from "./Contacts";
-import httpClient from "../../httpClient";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const style = theme => ({
@@ -57,24 +57,33 @@ const style = theme => ({
     const [date, setDate] = useState("")
     
     const BookAppointment = async () => {
-    try {
-      const resp = await httpClient.post("/api/v1/booking", {
-        employee_id,
-        service_id,
-        date,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        }
-      });
-      setSuccessMsg("Booking successful!");
-      setTimeout(() => {
-        navigate("/"); // Redirect to home or any other route
-      }, 2000); // 2 seconds delay
-    } catch (error) {
-      setSuccessMsg("Booking failed. Please try again.");
-    }
+      setSuccessMsg("Processing your booking...");
+      
+      await axios
+        .post("https://trina-overmild-cristobal.ngrok-free.dev/api/v1/booking", 
+          {
+            employee_id,
+            service_id,
+            date,
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem("access_token")}`,
+            }
+          }
+        )
+        .then(response => {
+          setSuccessMsg("✅ Booking successful! Redirecting to home...");
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        })
+        .catch(error => {
+          console.error("Booking error:", error);
+          const errorMsg = error.response?.data?.message || "Booking failed. Please try again.";
+          setSuccessMsg(`❌ ${errorMsg}`);
+        });
   };
     const handleChange = index => e => {
       setActiveStep(index)

@@ -9,7 +9,6 @@ import {
 import classNames from "classnames";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import httpClient from "../../httpClient";
 
 
 const style = theme => {
@@ -74,16 +73,28 @@ const NewBookings = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    httpClient.get("/bookings", {
+    fetch("http://localhost:3000/bookings", {
+      method: 'GET',
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("access_token")}`
       },
+      credentials: 'include'
     })
-      .then((response) => {
-        setBookings(response.data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setBookings(Array.isArray(data) ? data : []);
+    })
+    .catch(error => {
+      console.error('Error fetching bookings:', error);
+      setBookings([]);
+    })
+    .finally(() => setLoading(false));
   }, []);
 
   // Helper to get customer name and phone

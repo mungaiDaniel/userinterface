@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { withStyles, FormControlLabel, Grid, Switch } from "@material-ui/core";
-import httpClient from "../../httpClient";
+import axios from "axios";
 
 const style = theme => ({
   root: {
@@ -19,8 +19,9 @@ const style = theme => ({
   }
 });
 const SelectService = ({ classes, setService_id, setService }) => {
-
-  const [services, setServices] = useState([])
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const getInitialState = () => {
       return services.reduce((obj, item) => {
       obj[item.id] = false;
@@ -40,11 +41,24 @@ const SelectService = ({ classes, setService_id, setService }) => {
     .join(", ");
 
   useEffect(() => {
-    httpClient.get("/api/v1/stylings")
-    .then((response) => {
-      setServices(response.data)
-    })
-  }, [])
+    const fetchServices = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get("https://trina-overmild-cristobal.ngrok-free.dev/api/v1/stylings");
+        setServices(response.data);
+      } catch (err) {
+        console.error("Error fetching services:", err);
+        setError("Failed to load services. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+  if (loading) return <div>Loading services...</div>;
+  if (error) return <div className="text-danger">{error}</div>;
 
   return (
     <Grid

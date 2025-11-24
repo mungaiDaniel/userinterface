@@ -8,7 +8,7 @@ import {
   Tooltip
 } from "@material-ui/core";
 import classNames from "classnames";
-import httpClient from "../../httpClient";
+import axios from "axios";
 import { Face } from "@material-ui/icons";
 import { AccountBalance } from "@material-ui/icons";
 
@@ -69,6 +69,8 @@ const style = theme => {
 const RadioMasters = ({ classes, setEmployee_id, setEmployee }) => {
   const [users, setUsers] = useState([]);
   const [selected, setSelected] = useState(""); // single selected value
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleChecked = (id, user) => e => {
     setSelected(id);
@@ -88,10 +90,24 @@ const RadioMasters = ({ classes, setEmployee_id, setEmployee }) => {
     });
 
   useEffect(() => {
-    httpClient.get("/api/v1/employees").then(res => {
-      setUsers(res.data);
-    });
+    const fetchEmployees = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get("https://trina-overmild-cristobal.ngrok-free.dev/api/v1/employees");
+        setUsers(response.data);
+      } catch (err) {
+        console.error("Error fetching employees:", err);
+        setError("Failed to load employees. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEmployees();
   }, []);
+
+  if (loading) return <div>Loading employees...</div>;
+  if (error) return <div className="text-danger">{error}</div>;
 
   return (
     <Grid
